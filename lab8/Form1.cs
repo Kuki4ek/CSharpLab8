@@ -12,7 +12,6 @@ namespace lab8
 {
     public partial class Form1 : Form
     {
-        const string images_path = @"C:\Users\ja-v-\OneDrive\5 семестр\Лабы\Визуальное программирование\lab8\lab8\images";
         Size cell_size = new Size();
         Size columnsAndRows = new Size();
         Size space_size = new Size();
@@ -23,9 +22,9 @@ namespace lab8
         public Form1()
         {
             InitializeComponent();
-            Bitmap RAL_1_bitmap = new Bitmap(images_path + @"\RAL_1.gif");
-            Bitmap RAL_2_bitmap = new Bitmap(images_path + @"\RAL_2.gif");
-            Bitmap RAL_3_bitmap = new Bitmap(images_path + @"\RAL_3.gif");
+            Bitmap RAL_1_bitmap = new Bitmap(typeof(Form1).Assembly.GetManifestResourceStream("lab8.RAL_1.gif"));
+            Bitmap RAL_2_bitmap = new Bitmap(typeof(Form1).Assembly.GetManifestResourceStream("lab8.RAL_2.gif"));
+            Bitmap RAL_3_bitmap = new Bitmap(typeof(Form1).Assembly.GetManifestResourceStream("lab8.RAL_3.gif"));
             Grid RAL_1_grid = new Grid(new Point(7, 71), new Size(104, 45), new Size(12, 29), 5, 3, 13);
             Grid RAL_2_grid = new Grid(new Point(7, 44), new Size(65, 47), new Size(7, 25), 8, 10, 80);
             Grid RAL_3_grid = new Grid(new Point(6, 3), new Size(65, 46), new Size(8, 27), 8, 14, 107);
@@ -49,8 +48,8 @@ namespace lab8
             {
                 colors.Add(new ColorEntry(RAL_3_colors[i], RAL_3_ids[i]));
             }
-            XMLProcessor.SaveXML(colors, @"C:\Users\ja-v-\OneDrive\5 семестр\Лабы\Визуальное программирование\lab8\lab8\out\out.xml");
-            colors_memory = XMLProcessor.LoadXML(@"C:\Users\ja-v-\OneDrive\5 семестр\Лабы\Визуальное программирование\lab8\lab8\out\out.xml");
+            XMLProcessor.SaveXML(colors, @"out.xml");
+            colors_memory = XMLProcessor.LoadXML(@"out.xml");
             this.UpdateBitmap(colors_memory);
         }
         public void UpdateBitmap(List<ColorEntry> colors)
@@ -70,18 +69,18 @@ namespace lab8
         }
         public void SaveBitmap()
         {
-            bitmap.Save(@"C:\Users\ja-v-\OneDrive\5 семестр\Лабы\Визуальное программирование\lab8\lab8\out\out.png");
+            bitmap.Save(@"out.png");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            colors_memory = XMLProcessor.LoadXML(@"C:\Users\ja-v-\OneDrive\5 семестр\Лабы\Визуальное программирование\lab8\lab8\out\out.xml");
+            colors_memory = XMLProcessor.LoadXML(@"out.xml");
             this.UpdateBitmap(colors_memory);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            bitmap.Save(@"C:\Users\ja-v-\OneDrive\5 семестр\Лабы\Визуальное программирование\lab8\lab8\out\out.png");
+            bitmap.Save(@"out.png");
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
